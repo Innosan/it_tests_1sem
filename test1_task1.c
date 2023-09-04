@@ -3,27 +3,20 @@
 #include <locale.h>
 #include <math.h>
 #include <stdbool.h>
+#include <time.h>
+#include "math_utils.h"
 
 /*
-worth mention: before ctrlc-v to pelles, you need to change all scanf_s's to scanf!
+worth to mention: before ctrlc-v to pelles, you need to change all scanf_s's to scanf!
 */
 
+double solveMath(double x, double y, double z) {
+	// TODO: make validation for inf cases
 
-void generateWelcomeMessage(
-	char* userFio,
-	int groupNumber,
-	int testNumber,
-	int taskNumber,
-	int variant
-) {
-	printf(
-		"%s, %d, \nКонтрольная №%d, задание %d, вариант %d\n\n",
-		userFio, groupNumber, testNumber, taskNumber, variant
-	);
+	return log(fabs((y - sqrt(fabs(x))) * (x - y / (z + pow(x, 2) / 4))));
 }
 
 int main(void) {
-	//turnung messy kinda-cyrillic text in console into readable chars
 	char* locale = setlocale(LC_ALL, "");
 
 	int currentPickedOption = -1;
@@ -34,13 +27,7 @@ int main(void) {
 
 	double f = 0.;
 
-	generateWelcomeMessage(
-		"Фомин Михаил Витальевич",
-		4307,
-		1,
-		1,
-		26
-	);
+	getWelcomeMessage(getStudent());
 
 	while (currentPickedOption != 0)
 	{
@@ -67,13 +54,22 @@ int main(void) {
 				}
 			} while (isArgsValid == false);
 
-			f = log(fabs((y - sqrt(fabs(x))) * (x - y / (z + pow(x, 2) / 4))));
+			f = solveMath(x, y, z);
 
 			printf("\nF: %f\n\n", f);
 			break;
 		}
 		case 2: {
-			// TODO: solve math with random numbers;
+			srand(time(NULL));
+
+			x = getRandomNumber(-25, 25);
+			y = getRandomNumber(-25, 25);
+			z = getRandomNumber(-25, 25);
+
+			printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
+
+			f = solveMath(x, y, z);
+			printf("\nF: %f\n\n", f);
 
 			break;
 		}

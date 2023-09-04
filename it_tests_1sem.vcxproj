@@ -129,7 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="it_tests_1sem.c" />
+    <ClCompile Include="math_utils.c" />
+    <ClCompile Include="test1_task1.c" />
+    <ClCompile Include="test1_task2.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="math_utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
