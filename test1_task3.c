@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <math.h>
-#include <corecrt_math_defines.h>
 #include "math_utils.h"
 
-// TODO: deal with 0.20000 output
 int main(void) {
-	char* locale = setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
 
 	getWelcomeMessage(getStudent());
 

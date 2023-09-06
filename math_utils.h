@@ -1,5 +1,7 @@
 #define MATH_UTILS_H
 
+typedef struct student student;
+
 void getWelcomeMessage(struct student stud);
 
 /**

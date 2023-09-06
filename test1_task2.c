@@ -6,34 +6,32 @@
 #include <time.h>
 #include "math_utils.h"
 
-/*
-worth to mention: before ctrlc-v to pelles, you need to change all scanf_s's to scanf!
-*/
-
-double solveMath2(double x, double y, double z) {
+void solveMath(double x, double y, double z) {
 	// TODO: make validation for inf cases
 
+    double n = 0.;
+
 	if (y < -3) {
-		return sin(x) + 0.5 * (sqrt(x + fabs(y * z)));
+		n = sin(x) + 0.5 * (sqrt(x + fabs(y * z)));
 	}
 	else if (y <= 1) {
-		return 2 * y * sqrt(pow(x, 2) + z);
+		n = 2 * y * sqrt(pow(x, 2) + z);
 	}
 	else {
-		return 3 * pow(x, 3) - 2 * pow(y, 2) + z;
+		n = 3 * pow(x, 3) - 2 * pow(y, 2) + z;
 	}
+
+    printf("\nF: %f\n\n", n);
 }
 
-int main2(void) {
-	char* locale = setlocale(LC_ALL, "");
+int main(void) {
+	setlocale(LC_ALL, "");
 
 	int currentPickedOption = -1;
 
 	double x = 0.;
 	double y = 0.;
 	double z = 0.;
-
-	double n = 0.;
 
 	getWelcomeMessage(getStudent());
 
@@ -62,9 +60,7 @@ int main2(void) {
 				}
 			} while (isArgsValid == false);
 
-			n = solveMath2(x, y, z);
-
-			printf("\nF: %f\n\n", n);
+			solveMath(x, y, z);
 			break;
 		}
 		case 2: {
@@ -76,9 +72,7 @@ int main2(void) {
 
 			printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
 
-			n = solveMath2(x, y, z);
-			printf("\nF: %f\n\n", n);
-
+			solveMath(x, y, z);
 			break;
 		}
 		default:
