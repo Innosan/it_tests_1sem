@@ -10,13 +10,13 @@
 worth to mention: before ctrlc-v to pelles, you need to change all scanf_s's to scanf!
 */
 
-double solveMath(double x, double y, double z) {
+double solveMath1(double x, double y, double z) {
 	// TODO: make validation for inf cases
 
 	return log(fabs((y - sqrt(fabs(x))) * (x - y / (z + pow(x, 2) / 4))));
 }
 
-int main(void) {
+int main1(void) {
 	char* locale = setlocale(LC_ALL, "");
 
 	int currentPickedOption = -1;
@@ -54,7 +54,7 @@ int main(void) {
 				}
 			} while (isArgsValid == false);
 
-			f = solveMath(x, y, z);
+			f = solveMath1(x, y, z);
 
 			printf("\nF: %f\n\n", f);
 			break;
@@ -68,7 +68,7 @@ int main(void) {
 
 			printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
 
-			f = solveMath(x, y, z);
+			f = solveMath1(x, y, z);
 			printf("\nF: %f\n\n", f);
 
 			break;

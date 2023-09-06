@@ -132,6 +132,7 @@
     <ClCompile Include="math_utils.c" />
     <ClCompile Include="test1_task1.c" />
     <ClCompile Include="test1_task2.c" />
+    <ClCompile Include="test1_task3.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math_utils.h" />

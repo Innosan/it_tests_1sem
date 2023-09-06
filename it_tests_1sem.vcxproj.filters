@@ -24,6 +24,9 @@
     <ClCompile Include="test1_task1.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="test1_task3.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math_utils.h">
