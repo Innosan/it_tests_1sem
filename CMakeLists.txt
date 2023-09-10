@@ -8,5 +8,5 @@ include_directories(.)
 add_executable(it_tests_1sem
         math_utils.c
         math_utils.h
-        test2_task1.c
+        test2_task3.c
 )
