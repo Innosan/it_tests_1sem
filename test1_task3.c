@@ -1,13 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <math.h>
 #include "math_utils.h"
 
 int main(void) {
-	setlocale(LC_ALL, "");
-
-	getWelcomeMessage(getStudent());
+	getWelcomeMessage(getStudent(), 1, 3);
 
 	double y = 0.;
 

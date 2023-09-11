@@ -1,6 +1,6 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "math.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "math_utils.h"
 
 double solveRecurrence(int l) {
@@ -21,6 +21,7 @@ double solveRecurrence(int l) {
             prev2 = prev1;
             prev1 = current;
         }
+
         return sum;
     }
 }
@@ -28,7 +29,7 @@ double solveRecurrence(int l) {
 int main(void) {
     int n = 150;
 
-    getWelcomeMessage(getStudent());
+    getWelcomeMessage(getStudent(), 2, 1);
     double sum = solveRecurrence(n);
 
     printf("Sum of the recurrence from 1 to %d is %f\n", n, sum);

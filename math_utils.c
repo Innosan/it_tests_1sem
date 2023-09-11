@@ -1,26 +1,26 @@
-#include "stdio.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include "math_utils.h"
 
-void getWelcomeMessage(
-	struct student stud
-) {
+struct student myself = {
+        "Fomin Mikhail Vital\'evich",
+        4307,
+        26,
+};
+
+void getWelcomeMessage(struct student stud, int test, int task) {
 	printf(
-		"%s, %d, \nTest ¹%d, task %d, number %d\n\n",
-		stud.name, stud.groupNumber, stud.testNumber, stud.taskNumber, stud.variant
+		"%s, group %d\nTest %d, task %d, variant %d\n\n",
+		stud.name,
+        stud.groupNumber,
+        test,
+        task,
+        stud.personalNumber
 	);
 }
 
 struct student getStudent(void) {
-	struct student stud = {
-		"Fomin Mikhail Vital\'evich",
-		4307,
-		1,
-		1,
-		26
-	};
-
-	return stud;
+	return myself;
 };
 
 double getRandomNumber(double from, double to)

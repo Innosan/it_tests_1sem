@@ -1,24 +1,15 @@
 #define MATH_UTILS_H
+#include "task_structures.h"
 
-typedef struct student student;
-
-void getWelcomeMessage(struct student stud);
+void getWelcomeMessage(struct student stud, int test, int task);
 
 /**
  * Generates a random number within a specified range.
-* 
+*
  * @param from - the lower bound of the range.
  * @param to - the upper bound of the range.
  * @return a random number within the specified range.
  */
 double getRandomNumber(double from, double to);
 
-struct student getStudent();
-
-struct student {
-	char name[50];
-	int groupNumber;
-	int testNumber;
-	int taskNumber;
-	int variant;
-};
+#undef MATH_UTILS_H

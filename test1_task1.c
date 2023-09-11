@@ -1,6 +1,5 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <math.h>
 #include <stdbool.h>
 #include <time.h>
@@ -16,15 +15,13 @@ void solveMath(double x, double y, double z) {
 }
 
 int main(void) {
-	setlocale(LC_ALL, "");
-
 	int currentPickedOption = -1;
 
 	double x = 0.;
 	double y = 0.;
 	double z = 0.;
 
-	getWelcomeMessage(getStudent());
+	getWelcomeMessage(getStudent(), 1, 1);
 
 	while (currentPickedOption != 0)
 	{

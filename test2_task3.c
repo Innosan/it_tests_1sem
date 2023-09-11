@@ -1,16 +1,18 @@
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "math_utils.h"
-#include "time.h"
 
 int main(void) {
+    srand(time(NULL));
+
     int n = 6;
     int m = 6;
     int mainMatrix[n][m];
     int mainDiagonal[n];
     int transformedMatrix[n][m];
 
-    srand(time(NULL));
+    getWelcomeMessage(getStudent(), 2, 3);
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
@@ -39,8 +41,6 @@ int main(void) {
 
         puts("");
     }
-
-    printf("%d", mainMatrix[2][3]);
 
     return EXIT_SUCCESS;
 }
