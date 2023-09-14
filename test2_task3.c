@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "math_utils.h"
+#include "arrays.h"
 
 int main(void) {
     srand(time(NULL));
@@ -29,18 +30,10 @@ int main(void) {
     }
 
     puts("\nMain Diagonal: ");
-    for (int i = 0; i < n; ++i) {
-        printf("%d ", mainDiagonal[i]);
-    }
+    printIntArray(n, mainDiagonal);
 
     puts("\n\nMain Matrix: ");
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            printf("%6d", mainMatrix[i][j]);
-        }
-
-        puts("");
-    }
+    print2dIntArray(n, m, mainMatrix);
 
     return EXIT_SUCCESS;
 }

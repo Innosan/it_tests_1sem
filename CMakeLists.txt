@@ -6,8 +6,21 @@ set(CMAKE_C_STANDARD 17)
 include_directories(.)
 
 add_executable(it_tests_1sem
-        math_utils.c
+        #headers
+        arrays.h
         math_utils.h
         task_structures.h
+
+        #modules
+        math_utils.c
+        arrays.c
+
+        #programs
+        test1_task1.c
+        test1_task2.c
+        test1_task3.c
+        test2_task1.c
         test2_task3.c
+        test3_task1.c
+        test3_task3.c
 )
