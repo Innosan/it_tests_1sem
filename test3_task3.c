@@ -37,7 +37,7 @@ int main(void) {
 
     int array[arrayLength];
 
-    fillArray(arrayLength, array);
+    fillIntArray(arrayLength, array);
     printIntArray(arrayLength, array);
 
     int sumOfArray = fold(array, arrayLength, sum);

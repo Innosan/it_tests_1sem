@@ -29,7 +29,7 @@ int main(void) {
 
     double matrix[matrixDegree][matrixDegree];
 
-    fill_2d_double_array(matrixDegree, matrixDegree, matrix);
+    fill2dDoubleArray(matrixDegree, matrixDegree, matrix);
     print2dDoubleArray(matrixDegree, matrixDegree, matrix);
 
     puts("\nIn field:");

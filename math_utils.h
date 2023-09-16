@@ -19,6 +19,4 @@ void getWelcomeMessage(struct student stud, int test, int task);
  */
 double getRandomNumber(double from, double to);
 
-
-
 #undef MATH_UTILS_H

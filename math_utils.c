@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include "math_utils.h"
 
-struct student myself = {
-        "Fomin Mikhail Vital\'evich",
-        4307,
-        26,
-};
-
 void getWelcomeMessage(struct student stud, int test, int task) {
 	printf(
 		"%s, group %d\nTest %d, task %d, variant %d\n\n",
@@ -20,6 +14,12 @@ void getWelcomeMessage(struct student stud, int test, int task) {
 }
 
 struct student getStudent(void) {
+    struct student myself = {
+            "Fomin Mikhail Vital\'evich",
+            4307,
+            26,
+    };
+
 	return myself;
 };
 

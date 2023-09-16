@@ -2,11 +2,38 @@
 #include "arrays.h"
 #include "math_utils.h"
 
-void fillArray(int length, int (*array)) {
+/*
+ * Filling arrays
+ */
+
+void fillIntArray(int length, int (*array)) {
     for (int i = 0; i < length; i++) {
         array[i] = (int)getRandomNumber(-25, 25);
     }
 }
+
+void fillDoubleArray(int length, double (*array)) {
+    for (int i = 0; i < length; i++) {
+        array[i] = (double)getRandomNumber(-25, 25);
+    }
+}
+
+void fill2dDoubleArray(int rows, int cols, double (*array)[cols]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            array[i][j] = (double)getRandomNumber(-25, 25);
+        }
+    }
+}
+
+void fill2dIntArray(int rows, int cols, int (*array)[cols]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            array[i][j] = (int)getRandomNumber(-25, 25);
+        }
+    }
+}
+
 
 /*
  * Printing arrays
@@ -17,6 +44,14 @@ void printIntArray(int length, int (*array)) {
 
     for (int i = 0; i < length; i++) {
         printf("%d, ", array[i]);
+    }
+}
+
+void printDoubleArray(int length, double (*array)) {
+    printf("Array of %d length:\n", length);
+
+    for (int i = 0; i < length; i++) {
+        printf("%.2f, ", array[i]);
     }
 }
 
