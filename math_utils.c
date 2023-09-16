@@ -21,7 +21,7 @@ struct student getStudent(void) {
     };
 
 	return myself;
-};
+}
 
 double getRandomNumber(double from, double to)
 {
@@ -29,4 +29,10 @@ double getRandomNumber(double from, double to)
 	double div = RAND_MAX / range;
 
 	return from + (rand() / div);
+}
+
+void onInvalidInput(char *message) {
+    printf("Invalid input: %s\n", message);
+
+    while (getchar() != '\n');
 }

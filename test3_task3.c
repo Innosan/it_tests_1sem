@@ -30,8 +30,7 @@ int main(void) {
             isArgValid = 1;
         }
         else {
-            printf("Invalid input. Please enter only int values from 1 to any.\n");
-            while (getchar() != '\n');
+            onInvalidInput("enter only int values from 1 to any");
         }
     } while (isArgValid != 1);
 

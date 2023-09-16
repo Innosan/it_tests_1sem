@@ -59,8 +59,7 @@ int main(void) {
 					isArgsValid = true;
 				}
 				else {
-					printf("Invalid input. Please enter only double values.\n");
-					while (getchar() != '\n');
+                    onInvalidInput("enter only double values");
 				}
 			} while (isArgsValid == false);
 

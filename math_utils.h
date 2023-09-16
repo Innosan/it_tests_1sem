@@ -19,4 +19,11 @@ void getWelcomeMessage(struct student stud, int test, int task);
  */
 double getRandomNumber(double from, double to);
 
+/**
+ * Displays a message about invalid input then clears input.
+ *
+ * @param message - the invalid input message.
+ */
+void onInvalidInput(char *message);
+
 #undef MATH_UTILS_H

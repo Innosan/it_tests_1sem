@@ -22,8 +22,7 @@ int main(void) {
             isArgValid = 1;
         }
         else {
-            printf("Invalid input. Please enter only int values from 2 to N.\n");
-            while (getchar() != '\n');
+            onInvalidInput("enter only int values from 2 to N");
         }
     } while (isArgValid != 1);
 
