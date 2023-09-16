@@ -6,15 +6,22 @@
 #include "math_utils.h"
 
 void solveMath(double x, double y, double z) {
-	// TODO: make validation for inf cases
+    // validating infinity cases
+    double firstValidator = x + fabs(y * z);
+    double secondValidator = pow(x, 2) + z;
+
+    if (firstValidator < 0 && secondValidator < 0) {
+        printf("\nUnable to get sqrt from negative value!\n\n");
+        return;
+    }
 
     double n = 0.;
 
 	if (y < -3) {
-		n = sin(x) + 0.5 * (sqrt(x + fabs(y * z)));
+		n = sin(x) + 0.5 * (sqrt(firstValidator));
 	}
 	else if (y <= 1) {
-		n = 2 * y * sqrt(pow(x, 2) + z);
+		n = 2 * y * sqrt(secondValidator);
 	}
 	else {
 		n = 3 * pow(x, 3) - 2 * pow(y, 2) + z;

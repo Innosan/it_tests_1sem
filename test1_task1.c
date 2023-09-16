@@ -6,12 +6,35 @@
 #include "math_utils.h"
 
 void solveMath(double x, double y, double z) {
-	// TODO: make validation for inf cases
-
     double f = 0.;
+    double validator = (z + pow(x, 2) / 4);
 
-	f = log(fabs((y - sqrt(fabs(x))) * (x - y / (z + pow(x, 2) / 4))));
-    printf("\nF: %f\n\n", f);
+    if (validator == 0) {
+        printf("\nDivision by zero!\n\n");
+        return;
+    } else {
+        f = log(fabs((y - sqrt(fabs(x))) * (x - y / validator)));
+
+        printf("\nF: %f\n\n", f);
+    }
+}
+
+void runTests(void) {
+    puts("Running tests...");
+
+    puts("Test 1: expected result is value of F");
+
+    puts("Test 2: expected result is value of F");
+    solveMath(0, 2, -8);
+
+    puts("Test 3: expected result is value of F");
+    solveMath(-5, -2, -3);
+
+    puts("Test 4: expected result is value of F");
+    solveMath(1000, 500, 200);
+
+    puts("Test 5: expected result is printing division by zero");
+    solveMath(0, 0, 0);
 }
 
 int main(void) {
@@ -27,6 +50,7 @@ int main(void) {
 	{
 		printf("Input '1' to solve math problem with manual input.\n");
 		printf("Input '2' to solve math problem with random variables.\n");
+		printf("Input '3' to run tests!\n");
 		printf("Input '0' to exit!\n");
 
 		scanf("%d", &currentPickedOption);
@@ -63,6 +87,9 @@ int main(void) {
             solveMath(x, y, z);
 			break;
 		}
+        case 3: {
+            runTests();
+        }
 		default:
 			break;
 		}
