@@ -6,35 +6,18 @@
 #include "math_utils.h"
 
 void solveMath(double x, double y, double z) {
-    double f = 0.;
-    double validator = (z + pow(x, 2) / 4);
+    double validator = (z + pow(x, 2) / 4); // validating division by zero
+    double validator2 = (y - sqrt(fabs(x))) * (x - y / validator); // validating log of 0
 
-    if (validator == 0) {
-        printf("\nDivision by zero!\n\n");
+    if (validator == 0 || validator2 == 0) {
+        printf("\nDivision by zero or log of 0!\n\n");
         return;
     } else {
-        f = log(fabs((y - sqrt(fabs(x))) * (x - y / validator)));
+        double f = 0.;
+        f = log(fabs(validator2));
 
         printf("\nF: %f\n\n", f);
     }
-}
-
-void runTests(void) {
-    puts("Running tests...");
-
-    puts("Test 1: expected result is value of F");
-
-    puts("Test 2: expected result is value of F");
-    solveMath(0, 2, -8);
-
-    puts("Test 3: expected result is value of F");
-    solveMath(-5, -2, -3);
-
-    puts("Test 4: expected result is value of F");
-    solveMath(1000, 500, 200);
-
-    puts("Test 5: expected result is printing division by zero");
-    solveMath(0, 0, 0);
 }
 
 int main(void) {
@@ -63,7 +46,7 @@ int main(void) {
 
 			do {
 				if (scanf("%lf %lf %lf", &x, &y, &z) == 3) {
-					printf("Valid input: %lf, %lf, %lf\n", x, y, z);
+					printf("Valid input: %f, %f, %f\n", x, y, z);
 					isArgsValid = true;
 				}
 				else {
@@ -88,7 +71,7 @@ int main(void) {
 			break;
 		}
         case 3: {
-            runTests();
+            puts("Running tests...");
         }
 		default:
 			break;

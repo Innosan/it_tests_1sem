@@ -10,7 +10,7 @@ void solveMath(double x, double y, double z) {
     double firstValidator = x + fabs(y * z);
     double secondValidator = pow(x, 2) + z;
 
-    if (firstValidator < 0 && secondValidator < 0) {
+    if (firstValidator < 0 || secondValidator < 0) {
         printf("\nUnable to get sqrt from negative value!\n\n");
         return;
     }
