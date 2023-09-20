@@ -33,47 +33,49 @@ int main(void) {
 	{
 		printf("Input '1' to solve math problem with manual input.\n");
 		printf("Input '2' to solve math problem with random variables.\n");
-		printf("Input '3' to run tests!\n");
 		printf("Input '0' to exit!\n");
 
 		scanf("%d", &currentPickedOption);
 		switch (currentPickedOption) {
 
-		case 1: {
-			bool isArgsValid = false;
+            case 1: {
+                bool isArgsValid = false;
 
-			puts("Input 3 variables: ");
+                puts("Input 3 variables: ");
 
-			do {
-				if (scanf("%lf %lf %lf", &x, &y, &z) == 3) {
-					printf("Valid input: %f, %f, %f\n", x, y, z);
-					isArgsValid = true;
-				}
-				else {
-                    onInvalidInput("enter only double values");
-				}
-			} while (isArgsValid == false);
+                do {
+                    if (scanf("%lf %lf %lf", &x, &y, &z) == 3) {
+                        printf("Valid input: %f, %f, %f\n", x, y, z);
+                        isArgsValid = true;
+                    }
+                    else {
+                        onInvalidInput("enter only double values");
+                    }
+                } while (!isArgsValid);
 
-			solveMath(x, y, z);
-			break;
-		}
-		case 2: {
-			srand(time(NULL));
+                solveMath(x, y, z);
+                break;
+            }
+            case 2: {
+                srand(time(NULL));
 
-			x = getRandomNumber(-25, 25);
-			y = getRandomNumber(-25, 25);
-			z = getRandomNumber(-25, 25);
+                x = getRandomNumber(-25, 25);
+                y = getRandomNumber(-25, 25);
+                z = getRandomNumber(-25, 25);
 
-			printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
+                printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
 
-            solveMath(x, y, z);
-			break;
-		}
-        case 3: {
-            puts("Running tests...");
-        }
-		default:
-			break;
+                solveMath(x, y, z);
+                break;
+            }
+            case 0: {
+                puts("Exiting...");
+                break;
+            }
+            default: {
+                onInvalidInput("enter a valid option\n");
+                break;
+            }
 		}
 	}
 

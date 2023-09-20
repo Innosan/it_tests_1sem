@@ -12,6 +12,7 @@ int main(void) {
     int matrixDegree = 1;
     int isArgValid = 0;
 
+    // 26 and -26 because we're filling array within -25 to 25 range
     double max = -26;
     double min = 26;
 

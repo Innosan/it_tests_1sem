@@ -3,10 +3,18 @@
 #include "math_utils.h"
 #include "arrays.h"
 
+// summarize sum and array element
 int sum(int a, int b) {
     return a + b;
 }
 
+/**
+ * Folds array with sum function
+ * @param arr - array to fold
+ * @param size - size of array
+ * @param sumFunc - function to fold array with
+ * @return folded array
+ */
 int fold(int* arr, int size, int (*sumFunc)(int, int)) {
     int result = 0;
 

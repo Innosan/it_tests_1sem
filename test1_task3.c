@@ -8,6 +8,7 @@ int main(void) {
 
 	double y = 0.;
 
+    // calculating y for x in range [-1.0, 2.0) with step 0.2
     for (double x = -1.0; x < 2.0; x += 0.2) {
         if (x < -0.2) {
             y = M_PI / x + sin(M_PI / x);
