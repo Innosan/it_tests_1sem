@@ -13,13 +13,13 @@ int main(void) {
         if (x < -0.2) {
             y = M_PI / x + sin(M_PI / x);
 
-            printf("For x = %lf, y = %lf\n", x, y);
+            printf("For x = %.2lf, y = %.2lf\n", x, y);
         }
         else {
             if (x > 0.0) {
                 y = M_PI * x / 2;
 
-                printf("For x = %lf, y = %lf\n", x, y);
+                printf("For x = %.2lf, y = %.2lf\n", x, y);
             }
             else {
                 printf("For x = 0, y = 0\n");

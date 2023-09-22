@@ -36,10 +36,9 @@ double solveRecurrence(int l) {
 
 int main(void) {
     int l = 150;
-
     getWelcomeMessage(getStudent(), 2, 1);
-    double sum = solveRecurrence(l);
 
+    double sum = solveRecurrence(l);
     printf("Sum of the recurrence from 1 to %d is %f\n", l, sum);
 
     return EXIT_SUCCESS;

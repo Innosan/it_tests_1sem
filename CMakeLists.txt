@@ -10,10 +10,12 @@ add_executable(it_tests_1sem
         arrays.h
         math_utils.h
         task_structures.h
+        menu.h
 
         #modules
         math_utils.c
         arrays.c
+        menu.c
 
         #programs
 #        test1_task1.c
@@ -23,6 +25,6 @@ add_executable(it_tests_1sem
 #        test2_task2.c
 #        test2_task3.c
 #        test3_task1.c
-        test3_task2.c
-#        test3_task3.c
+#        test3_task2.c
+        test3_task3.c
 )

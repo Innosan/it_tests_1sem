@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "math_utils.h"
 #include "arrays.h"
+#include "menu.h"
 
 // summarize sum and array element
 int sum(int a, int b) {
@@ -15,7 +17,7 @@ int sum(int a, int b) {
  * @param sumFunc - function to fold array with
  * @return folded array
  */
-int fold(int* arr, int size, int (*sumFunc)(int, int)) {
+int foldArray(int* arr, int size, int (*sumFunc)(int, int)) {
     int result = 0;
 
     for (int i = 0; i < size; i++) {
@@ -25,30 +27,69 @@ int fold(int* arr, int size, int (*sumFunc)(int, int)) {
     return result;
 }
 
-int main(void) {
-    getWelcomeMessage(getStudent(), 3, 3);
-
-    int arrayLength = 0;
-    int isArgValid = 0;
-
-    printf("Input array length:");
-    do {
-        if (scanf("%d", &arrayLength) == 1 && arrayLength > 0) {
-            printf("Valid input: %d\n", arrayLength);
-            isArgValid = 1;
-        }
-        else {
-            onInvalidInput("enter only int values from 1 to any");
-        }
-    } while (isArgValid != 1);
-
+void solveTask(int arrayLength) {
     int array[arrayLength];
 
     fillIntArray(arrayLength, array);
     printIntArray(arrayLength, array);
 
-    int sumOfArray = fold(array, arrayLength, sum);
+    int sumOfArray = foldArray(array, arrayLength, sum);
     printf("\nSum of array: %d\n", sumOfArray);
+}
+
+int main(void) {
+    srand(time(NULL));
+    getWelcomeMessage(getStudent(), 3, 3);
+
+    int currentPickedOption = -1;
+
+    while (currentPickedOption != 9)
+    {
+        printMenuOptions();
+        currentPickedOption = getMenuOption();
+
+        int arrayLength = 0;
+        switch (currentPickedOption) {
+
+            case 1: {
+                int isArgValid = 0;
+
+                printf("Input array length:");
+                do {
+                    if (scanf("%d", &arrayLength) == 1 && arrayLength > 1) {
+                        printf("Valid input: %d\n", arrayLength);
+                        isArgValid = 1;
+                    }
+                    else {
+                        onInvalidInput("enter only int values from 2 to any");
+                    }
+                } while (isArgValid != 1);
+
+                solveTask(arrayLength);
+                break;
+            }
+            case 2: {
+                arrayLength = (int) getRandomNumber(2, 10);
+
+                printf("\nRandom array length: %d\n", arrayLength);
+
+                solveTask(arrayLength);
+                break;
+            }
+            case 3: {
+                system("cls");
+            }
+            case 9: {
+                puts("Exiting...");
+                break;
+            }
+            case 0:
+            default:{
+                onInvalidInput("enter a valid option\n");
+                break;
+            }
+        }
+    }
 
     return EXIT_SUCCESS;
 }

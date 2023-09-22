@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include "math_utils.h"
+#include "menu.h"
 
 void solveMath(double x, double y, double z) {
     // validating infinity cases
@@ -39,13 +40,10 @@ int main(void) {
 
 	getWelcomeMessage(getStudent(), 1, 2);
 
-	while (currentPickedOption != 0)
+	while (currentPickedOption != 3)
 	{
-		printf("Input '1' to solve math problem with manual input.\n");
-		printf("Input '2' to solve math problem with random numbers.\n");
-		printf("Input '0' to exit!\n");
-
-		scanf("%d", &currentPickedOption);
+		printMenuOptions();
+        currentPickedOption = getMenuOption();
 		switch (currentPickedOption) {
 
             case 1: {
@@ -77,11 +75,12 @@ int main(void) {
                 solveMath(x, y, z);
                 break;
             }
-            case 0: {
+            case 9: {
                 puts("Exiting...");
                 break;
             }
-            default: {
+            case 0:
+            default:{
                 onInvalidInput("enter a valid option\n");
                 break;
             }

@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include "math_utils.h"
+#include "menu.h"
 
 void solveMath(double x, double y, double z) {
     double validator = (z + pow(x, 2) / 4); // validating division by zero
@@ -29,13 +30,11 @@ int main(void) {
 
 	getWelcomeMessage(getStudent(), 1, 1);
 
-	while (currentPickedOption != 0)
+	while (currentPickedOption != 3)
 	{
-		printf("Input '1' to solve math problem with manual input.\n");
-		printf("Input '2' to solve math problem with random variables.\n");
-		printf("Input '0' to exit!\n");
+		printMenuOptions();
+        currentPickedOption = getMenuOption();
 
-		scanf("%d", &currentPickedOption);
 		switch (currentPickedOption) {
 
             case 1: {
@@ -68,11 +67,15 @@ int main(void) {
                 solveMath(x, y, z);
                 break;
             }
-            case 0: {
+            case 3: {
+                system("cls");
+            }
+            case 9: {
                 puts("Exiting...");
                 break;
             }
-            default: {
+            case 0:
+            default:{
                 onInvalidInput("enter a valid option\n");
                 break;
             }
