@@ -5,7 +5,12 @@
 #include "arrays.h"
 #include "menu.h"
 
-// summarize sum and array element
+/**
+ * Sums two numbers
+ * @param a - sum being added
+ * @param b - number to add
+ * @return sum of two numbers
+ */
 int sum(int a, int b) {
     return a + b;
 }
@@ -27,6 +32,12 @@ int foldArray(int* arr, int size, int (*sumFunc)(int, int)) {
     return result;
 }
 
+/**
+ * Fills array with random numbers from -25 to 25,
+ * then sums it up and prints it
+ *
+ * @param arrayLength - size of array
+ */
 void solveTask(int arrayLength) {
     int array[arrayLength];
 

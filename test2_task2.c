@@ -4,13 +4,13 @@
 #include "arrays.h"
 #include "math_utils.h"
 
+#define ARRAY_SIZE 25
+
 int main(void) {
     srand(time(NULL));
 
     getWelcomeMessage(getStudent(), 2, 2);
-
-    int length = 25;
-    double array[length];
+    double array[ARRAY_SIZE];
 
     // 26 and -26 because we're filling array within -25 to 25 range
     double maxElem = -26.;
@@ -20,11 +20,11 @@ int main(void) {
 
     int p = 0;
 
-    fillDoubleArray(length, array);
-    printDoubleArray(length, array);
+    fillDoubleArray(ARRAY_SIZE, array);
+    printDoubleArray(ARRAY_SIZE, array);
 
     // finding max and min elements with their indexes
-    for (int i = 0; i < length; ++i) {
+    for (int i = 0; i < ARRAY_SIZE; ++i) {
         if (array[i] >= maxElem) {
             maxElem = array[i];
             maxElemIndex = i;
@@ -50,7 +50,7 @@ int main(void) {
     }
 
     puts("\nY sequence: ");
-    for (int i = p + 1; i < length; ++i) {
+    for (int i = p + 1; i < ARRAY_SIZE; ++i) {
         printf("%6.2f, ", array[i]);
     }
 
