@@ -1,19 +1,26 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "menu.h"
 
 void printMenuOptions(void) {
-    printf("Input '1' to solve math problem with manual input.\n");
-    printf("Input '2' to solve math problem with random variables.\n");
-    printf("Input '3' to clear console.\n");
-    printf("Input '9' to exit!\n");
+    printf("Input %d to solve math problem with manual input.\n", MANUAL_INPUT);
+    printf("Input %d to solve math problem with random variables.\n", RANDOM_INPUT);
+    printf("Input %d to clear console.\n", CLEAR_CONSOLE);
+    printf("Input %d to exit!\n", EXIT);
 
     printf("\nPick option:");
 }
 
 int getMenuOption(void) {
-    char pickedOption[80];
-    scanf("%s", pickedOption);
+    int pickedOption = 0;
 
-    return atoi(pickedOption);
+    while (1) {
+        if (scanf("%d", &pickedOption) == 1) {
+            while (getchar() != '\n');
+
+            return pickedOption;
+        } else {
+            while (getchar() != '\n');
+            puts("Please, enter valid option!");
+        };
+    }
 }

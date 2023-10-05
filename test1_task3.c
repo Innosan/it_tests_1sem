@@ -8,18 +8,20 @@ int main(void) {
 
 	double y = 0.;
 
-    // calculating y for x in range [-1.0, 2.0) with step 0.2
-    for (double x = -1.0; x < 2.0; x += 0.2) {
-        if (x < -0.2) {
-            y = M_PI / x + sin(M_PI / x);
+    // calculating y for x in range [-1.0, 2.0] with step 0.2
+    for (int x = -10; x <= 20; x += 2) {
+        double factor = (double) x / 10;
 
-            printf("For x = %.2lf, y = %.2lf\n", x, y);
+        if (factor < -0.2) {
+            y = M_PI / factor + sin(M_PI / factor);
+
+            printf("For x = %.2lf, y = %.2lf\n", factor, y);
         }
         else {
-            if (x > 0.0) {
-                y = M_PI * x / 2;
+            if (factor > 0.0) {
+                y = M_PI * factor / 2;
 
-                printf("For x = %.2lf, y = %.2lf\n", x, y);
+                printf("For x = %.2lf, y = %.2lf\n", factor, y);
             }
             else {
                 printf("For x = 0, y = 0\n");

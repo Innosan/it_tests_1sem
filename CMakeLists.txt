@@ -18,7 +18,7 @@ add_executable(it_tests_1sem
         menu.c
 
         #programs
-#        test1_task1.c
+        test1_task1.c
 #        test1_task2.c
 #        test1_task3.c
 #        test2_task1.c
@@ -26,5 +26,5 @@ add_executable(it_tests_1sem
 #        test2_task3.c
 #        test3_task1.c
 #        test3_task2.c
-        test3_task3.c
+#        test3_task3.c
 )

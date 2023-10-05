@@ -22,6 +22,8 @@ void solveMath(double x, double y, double z) {
 }
 
 int main(void) {
+    srand(time(NULL));
+
 	int currentPickedOption = -1;
 
 	double x = 0.;
@@ -30,14 +32,14 @@ int main(void) {
 
 	getWelcomeMessage(getStudent(), 1, 1);
 
-	while (currentPickedOption != 3)
+	while (currentPickedOption != EXIT)
 	{
 		printMenuOptions();
         currentPickedOption = getMenuOption();
 
 		switch (currentPickedOption) {
 
-            case 1: {
+            case MANUAL_INPUT: {
                 bool isArgsValid = false;
 
                 puts("Input 3 variables: ");
@@ -55,9 +57,7 @@ int main(void) {
                 solveMath(x, y, z);
                 break;
             }
-            case 2: {
-                srand(time(NULL));
-
+            case RANDOM_INPUT: {
                 x = getRandomNumber(-25, 25);
                 y = getRandomNumber(-25, 25);
                 z = getRandomNumber(-25, 25);
@@ -67,14 +67,14 @@ int main(void) {
                 solveMath(x, y, z);
                 break;
             }
-            case 3: {
+            case CLEAR_CONSOLE: {
                 system("cls");
+                break;
             }
-            case 9: {
+            case EXIT: {
                 puts("Exiting...");
                 break;
             }
-            case 0:
             default:{
                 onInvalidInput("enter a valid option\n");
                 break;

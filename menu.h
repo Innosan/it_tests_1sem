@@ -12,4 +12,11 @@ void printMenuOptions(void);
  */
 int getMenuOption(void);
 
+typedef enum {
+    MANUAL_INPUT = 1,
+    RANDOM_INPUT,
+    CLEAR_CONSOLE,
+    EXIT,
+} MenuOption;
+
 #endif //IT_TESTS_1SEM_MENU_H

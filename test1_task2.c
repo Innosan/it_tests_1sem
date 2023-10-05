@@ -7,22 +7,25 @@
 #include "menu.h"
 
 void solveMath(double x, double y, double z) {
-    // validating infinity cases
-    double firstValidator = x + fabs(y * z);
-    double secondValidator = pow(x, 2) + z;
-
-    if (firstValidator < 0 || secondValidator < 0) {
-        printf("\nUnable to get sqrt from negative value!\n\n");
-        return;
-    }
-
     double n = 0.;
 
 	if (y < -3) {
-		n = sin(x) + 0.5 * (sqrt(firstValidator));
+        double nonNegativeResult = x + fabs(y * z);
+
+        if (nonNegativeResult < 0) {
+            return;
+        }
+
+		n = sin(x) + 0.5 * (sqrt(nonNegativeResult));
 	}
 	else if (y <= 1) {
-		n = 2 * y * sqrt(secondValidator);
+        double nonNegativeResult = pow(x, 2) + z;
+
+        if (nonNegativeResult < 0) {
+            return;
+        }
+
+		n = 2 * y * sqrt(nonNegativeResult);
 	}
 	else {
 		n = 3 * pow(x, 3) - 2 * pow(y, 2) + z;
@@ -44,9 +47,10 @@ int main(void) {
 	{
 		printMenuOptions();
         currentPickedOption = getMenuOption();
+
 		switch (currentPickedOption) {
 
-            case 1: {
+            case MANUAL_INPUT: {
                 bool isArgsValid = false;
 
                 puts("Input 3 variables: ");
@@ -63,7 +67,7 @@ int main(void) {
                 solveMath(x, y, z);
                 break;
             }
-            case 2: {
+            case RANDOM_INPUT: {
                 srand(time(NULL));
 
                 x = getRandomNumber(-25, 25);
@@ -75,11 +79,10 @@ int main(void) {
                 solveMath(x, y, z);
                 break;
             }
-            case 9: {
+            case EXIT: {
                 puts("Exiting...");
                 break;
             }
-            case 0:
             default:{
                 onInvalidInput("enter a valid option\n");
                 break;
