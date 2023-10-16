@@ -26,4 +26,9 @@ double getRandomNumber(double from, double to);
  */
 void onInvalidInput(char *message);
 
+typedef enum {
+    MIN_RANDOM = -25,
+    MAX_RANDOM = 25,
+} RandomRange;
+
 #undef MATH_UTILS_H

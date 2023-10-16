@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <time.h>
 #include "math_utils.h"
 #include "arrays.h"
@@ -44,15 +45,17 @@ int main(void) {
 
     int currentPickedOption = -1;
 
-    while (currentPickedOption != 9)
+    while (currentPickedOption != EXIT)
     {
         printMenuOptions();
         currentPickedOption = getMenuOption();
 
         int matrixDegree = 1;
+
         switch (currentPickedOption) {
-            case 1: {
-                int isArgValid = 0;
+
+            case MANUAL_INPUT: {
+                bool isArgValid = false;
 
                 do {
                     printf("Input matrix degree:");
@@ -62,15 +65,15 @@ int main(void) {
                         isArgValid = 1;
                     }
                     else {
+                        while (getchar() != '\n');
                         onInvalidInput("enter only int values from 2 to N");
                     }
-                } while (isArgValid != 1);
+                } while (!isArgValid);
 
                 solveTask(matrixDegree);
-
                 break;
             }
-            case 2: {
+            case RANDOM_INPUT: {
                 matrixDegree = (int) getRandomNumber(1, 10);
 
                 printf("\nRandom matrix degree: %d\n", matrixDegree);
@@ -78,14 +81,13 @@ int main(void) {
                 solveTask(matrixDegree);
                 break;
             }
-            case 3: {
+            case CLEAR_CONSOLE: {
                 system("cls");
             }
-            case 9: {
+            case EXIT: {
                 puts("Exiting...");
                 break;
             }
-            case 0:
             default:{
                 onInvalidInput("enter a valid option\n");
                 break;

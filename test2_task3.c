@@ -17,7 +17,7 @@ int main(void) {
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            mainMatrix[i][j] = (int) getRandomNumber(-25, 25);
+            mainMatrix[i][j] = (int) getRandomNumber(MIN_RANDOM, MAX_RANDOM);
 
             if (i == j) {
                 mainDiagonal[i] = mainMatrix[i][j];

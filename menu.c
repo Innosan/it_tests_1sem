@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "menu.h"
+#include "math_utils.h"
 
 void printMenuOptions(void) {
     printf("Input %d to solve math problem with manual input.\n", MANUAL_INPUT);
@@ -13,14 +14,13 @@ void printMenuOptions(void) {
 int getMenuOption(void) {
     int pickedOption = 0;
 
-    while (1) {
-        if (scanf("%d", &pickedOption) == 1) {
-            while (getchar() != '\n');
+    while (scanf("%d", &pickedOption) != 1) {
 
-            return pickedOption;
-        } else {
-            while (getchar() != '\n');
-            puts("Please, enter valid option!");
-        };
+        while (getchar() != '\n');
+
+        return 0;
     }
+
+    while (getchar() != '\n');
+    return pickedOption;
 }

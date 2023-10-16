@@ -33,6 +33,4 @@ double getRandomNumber(double from, double to)
 
 void onInvalidInput(char *message) {
     printf("Invalid input: %s\n", message);
-
-    while (getchar() != '\n');
 }

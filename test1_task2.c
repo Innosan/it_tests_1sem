@@ -35,6 +35,8 @@ void solveMath(double x, double y, double z) {
 }
 
 int main(void) {
+    srand(time(NULL));
+
 	int currentPickedOption = -1;
 
 	double x = 0.;
@@ -43,7 +45,7 @@ int main(void) {
 
 	getWelcomeMessage(getStudent(), 1, 2);
 
-	while (currentPickedOption != 3)
+	while (currentPickedOption != EXIT)
 	{
 		printMenuOptions();
         currentPickedOption = getMenuOption();
@@ -68,15 +70,17 @@ int main(void) {
                 break;
             }
             case RANDOM_INPUT: {
-                srand(time(NULL));
-
-                x = getRandomNumber(-25, 25);
-                y = getRandomNumber(-25, 25);
-                z = getRandomNumber(-25, 25);
+                x = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+                y = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+                z = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
 
                 printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
 
                 solveMath(x, y, z);
+                break;
+            }
+            case CLEAR_CONSOLE: {
+                system("cls");
                 break;
             }
             case EXIT: {

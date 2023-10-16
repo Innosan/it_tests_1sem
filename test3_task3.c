@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <time.h>
 #include "math_utils.h"
 #include "arrays.h"
@@ -20,9 +21,9 @@ int sum(int a, int b) {
  * @param arr - array to fold
  * @param size - size of array
  * @param sumFunc - function to fold array with
- * @return folded array
+ * @return sum of elements in array
  */
-int foldArray(int* arr, int size, int (*sumFunc)(int, int)) {
+int foldArray(int *arr, int size, int (*sumFunc)(int, int)) {
     int result = 0;
 
     for (int i = 0; i < size; i++) {
@@ -54,7 +55,7 @@ int main(void) {
 
     int currentPickedOption = -1;
 
-    while (currentPickedOption != 9)
+    while (currentPickedOption != EXIT)
     {
         printMenuOptions();
         currentPickedOption = getMenuOption();
@@ -62,8 +63,8 @@ int main(void) {
         int arrayLength = 0;
         switch (currentPickedOption) {
 
-            case 1: {
-                int isArgValid = 0;
+            case MANUAL_INPUT: {
+                bool isArgValid = false;
 
                 printf("Input array length:");
                 do {
@@ -72,14 +73,15 @@ int main(void) {
                         isArgValid = 1;
                     }
                     else {
+                        while (getchar() != '\n');
                         onInvalidInput("enter only int values from 2 to any");
                     }
-                } while (isArgValid != 1);
+                } while (!isArgValid);
 
                 solveTask(arrayLength);
                 break;
             }
-            case 2: {
+            case RANDOM_INPUT: {
                 arrayLength = (int) getRandomNumber(2, 10);
 
                 printf("\nRandom array length: %d\n", arrayLength);
@@ -87,14 +89,13 @@ int main(void) {
                 solveTask(arrayLength);
                 break;
             }
-            case 3: {
+            case CLEAR_CONSOLE: {
                 system("cls");
             }
-            case 9: {
+            case EXIT: {
                 puts("Exiting...");
                 break;
             }
-            case 0:
             default:{
                 onInvalidInput("enter a valid option\n");
                 break;

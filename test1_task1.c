@@ -7,15 +7,21 @@
 #include "menu.h"
 
 void solveMath(double x, double y, double z) {
-    double validator = (z + pow(x, 2) / 4); // validating division by zero
-    double validator2 = (y - sqrt(fabs(x))) * (x - y / validator); // validating log of 0
+    double zeroValidator = (z + pow(x, 2) / 4); // validating division by zero
+    double logValidator = (y - sqrt(fabs(x))) * (x - y / zeroValidator); // validating log of 0
 
-    if (validator == 0 || validator2 == 0) {
-        printf("\nDivision by zero or log of 0!\n\n");
+    if (zeroValidator == 0) {
+        printf("\nDivision by 0 is prohibited!\n\n");
+
         return;
-    } else {
+    } else if (logValidator == 0) {
+        printf("\nLog of 0 is prohibited!\n\n");
+
+        return;
+    }
+    else {
         double f = 0.;
-        f = log(fabs(validator2));
+        f = log(fabs(logValidator));
 
         printf("\nF: %f\n\n", f);
     }
@@ -50,6 +56,7 @@ int main(void) {
                         isArgsValid = true;
                     }
                     else {
+                        while (getchar() != '\n');
                         onInvalidInput("enter only double values");
                     }
                 } while (!isArgsValid);
@@ -58,9 +65,9 @@ int main(void) {
                 break;
             }
             case RANDOM_INPUT: {
-                x = getRandomNumber(-25, 25);
-                y = getRandomNumber(-25, 25);
-                z = getRandomNumber(-25, 25);
+                x = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+                y = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+                z = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
 
                 printf("\nRandom X: %f\nRandom Y: %f\nRandom Z: %f", x, y, z);
 
@@ -76,7 +83,7 @@ int main(void) {
                 break;
             }
             default:{
-                onInvalidInput("enter a valid option\n");
+                onInvalidInput("enter a valid option!\n");
                 break;
             }
 		}
