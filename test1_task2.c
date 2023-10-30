@@ -10,24 +10,29 @@ void solveMath(double x, double y, double z) {
     double n = 0.;
 
 	if (y < -3) {
+        puts("Picked first evaluation!");
         double nonNegativeResult = x + fabs(y * z);
 
         if (nonNegativeResult < 0) {
+            puts("Cannot get sqrt of negative value!");
             return;
         }
 
 		n = sin(x) + 0.5 * (sqrt(nonNegativeResult));
 	}
 	else if (y <= 1) {
+        puts("Picked second evaluation!");
         double nonNegativeResult = pow(x, 2) + z;
 
         if (nonNegativeResult < 0) {
+            puts("Cannot get sqrt of negative value!");
             return;
         }
 
 		n = 2 * y * sqrt(nonNegativeResult);
 	}
 	else {
+        puts("Picked third evaluation!");
 		n = 3 * pow(x, 3) - 2 * pow(y, 2) + z;
 	}
 
@@ -60,6 +65,8 @@ int main(void) {
                 do {
                     if (scanf("%lf %lf %lf", &x, &y, &z) == 3) {
                         printf("Valid input: %lf, %lf, %lf\n", x, y, z);
+                        while (getchar() != '\n');
+
                         isArgsValid = true;
                     } else {
                         onInvalidInput("enter only double values");

@@ -53,6 +53,8 @@ int main(void) {
                 do {
                     if (scanf("%lf %lf %lf", &x, &y, &z) == 3) {
                         printf("Valid input: %f, %f, %f\n", x, y, z);
+                        while (getchar() != '\n');
+
                         isArgsValid = true;
                     }
                     else {
