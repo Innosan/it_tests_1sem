@@ -21,12 +21,26 @@ int main(void) {
 
             if (i == j) {
                 mainDiagonal[i] = mainMatrix[i][j];
+            }
+        }
+    }
 
-                for (int k = 0; k < j; ++k) {
-                    printf("%d ", mainMatrix[i][k]);
+    for (int i = 0; i < n; ++i) {
+        int sumOfRow = 0;
+
+        for (int j = 0; j < m; ++j) {
+            if (i == j) {
+                if (mainMatrix[i][j] != 0) {
+                    for (int k = j + 1; k < n; ++k) {
+                        sumOfRow += mainMatrix[i][k];
+                    }
+
+                    mainMatrix[i][j] = sumOfRow;
+                    printf("Sum of row %d: %d", i + 1, sumOfRow);
                 }
             }
         }
+        puts("");
     }
 
     puts("\nMain Diagonal: ");
