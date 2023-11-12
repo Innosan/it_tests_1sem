@@ -48,7 +48,7 @@ void printIntArray(int length, int (*array)) {
 }
 
 void printDoubleArray(int length, double (*array)) {
-    printf("Array of %d length:\n", length);
+    printf("Array of length %d:\n", length);
 
     for (int i = 0; i < length; i++) {
         printf("%.2f, ", array[i]);

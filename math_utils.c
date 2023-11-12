@@ -4,7 +4,7 @@
 
 void getWelcomeMessage(struct student stud, int test, int task) {
 	printf(
-		"%s, group %d\nTest %d, task %d, variant %d\n\n",
+		"%s, group %d\nTest %d, task %d, variant %d",
 		stud.name,
         stud.groupNumber,
         test,

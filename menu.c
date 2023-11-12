@@ -3,7 +3,7 @@
 #include "math_utils.h"
 
 void printMenuOptions(void) {
-    printf("Input %d to solve math problem with manual input.\n", MANUAL_INPUT);
+    printf("\n\nInput %d to solve math problem with manual input.\n", MANUAL_INPUT);
     printf("Input %d to solve math problem with random variables.\n", RANDOM_INPUT);
     printf("Input %d to clear console.\n", CLEAR_CONSOLE);
     printf("Input %d to exit!\n", EXIT);

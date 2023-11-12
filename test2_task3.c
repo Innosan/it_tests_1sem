@@ -1,53 +1,98 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include "math_utils.h"
 #include "arrays.h"
+#include "menu.h"
+#include "inputs.h"
+
+#define MATRIX_DEGREE 6
+
+void solveMath(int rows, int cols, int (*array)[cols]) {
+    puts("\n\nOriginal Matrix: ");
+    print2dIntArray(rows, cols, array);
+
+    /**
+     * needed for storing sum of elements
+     * behind an element of main diagonal
+     */
+    int sumVector[5] = { 0 };
+
+    for (int i = 0; i < rows; ++i) {
+        int sumOfRow = 0;
+
+        for (int j = 0; j < cols; ++j) {
+
+            // picking only elems of main diagonal != 0
+            if (i == j && array[i][j] != 0 && i != 5) {
+
+                // calculating sum of elems behind elem of main diagonal
+                for (int k = j + 1; k < cols; ++k) {
+                    sumOfRow += array[i][k];
+                }
+
+                array[i][j] = sumOfRow;
+                sumVector[i] = sumOfRow;
+            }
+        }
+    }
+
+    puts("\nSum vector: ");
+    printIntArray(5, sumVector);
+
+    puts("\n\nModified Matrix: ");
+    print2dIntArray(rows, cols, array);
+}
 
 int main(void) {
     srand(time(NULL));
-
-    int n = 6;
-    int m = 6;
-    int mainMatrix[n][m];
-    int mainDiagonal[n];
-    int transformedMatrix[n][m];
-
     getWelcomeMessage(getStudent(), 2, 3);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            mainMatrix[i][j] = (int) getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+    int currentPickedOption = -1;
 
-            if (i == j) {
-                mainDiagonal[i] = mainMatrix[i][j];
-            }
-        }
-    }
+    int matrix[MATRIX_DEGREE][MATRIX_DEGREE] = {0};
 
-    for (int i = 0; i < n; ++i) {
-        int sumOfRow = 0;
+    while (currentPickedOption != EXIT)
+    {
+        printMenuOptions();
+        currentPickedOption = getMenuOption();
 
-        for (int j = 0; j < m; ++j) {
-            if (i == j) {
-                if (mainMatrix[i][j] != 0) {
-                    for (int k = j + 1; k < n; ++k) {
-                        sumOfRow += mainMatrix[i][k];
+        switch (currentPickedOption) {
+
+            case MANUAL_INPUT: {
+                printf("Input %d variables: \n", MATRIX_DEGREE * 2);
+
+                for (int i = 0; i < MATRIX_DEGREE; ++i) {
+                    for (int j = 0; j < MATRIX_DEGREE; ++j) {
+                        printf("[%d][%d] element:", i + 1, j + 1);
+                        matrix[i][j] = getIntInput();
                     }
-
-                    mainMatrix[i][j] = sumOfRow;
-                    printf("Sum of row %d: %d", i + 1, sumOfRow);
                 }
+
+                solveMath(MATRIX_DEGREE, MATRIX_DEGREE, matrix);
+                break;
+            }
+            case RANDOM_INPUT: {
+                fill2dIntArray(MATRIX_DEGREE, MATRIX_DEGREE, matrix);
+
+                solveMath(MATRIX_DEGREE, MATRIX_DEGREE, matrix);
+                break;
+            }
+            case CLEAR_CONSOLE: {
+                system("cls");
+                break;
+            }
+            case EXIT: {
+                puts("Exiting...");
+                break;
+            }
+            default:{
+                onInvalidInput("enter a valid option!\n");
+                break;
             }
         }
-        puts("");
     }
-
-    puts("\nMain Diagonal: ");
-    printIntArray(n, mainDiagonal);
-
-    puts("\n\nMain Matrix: ");
-    print2dIntArray(n, m, mainMatrix);
 
     return EXIT_SUCCESS;
 }
