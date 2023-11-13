@@ -15,7 +15,6 @@ int getMenuOption(void);
 typedef enum {
     MANUAL_INPUT = 1,
     RANDOM_INPUT,
-    CLEAR_CONSOLE,
     EXIT,
 } MenuOption;
 

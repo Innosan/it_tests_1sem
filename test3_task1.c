@@ -1,41 +1,51 @@
+// system libs
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <time.h>
+
+// dev libs
 #include "math_utils.h"
 #include "arrays.h"
 #include "menu.h"
+#include "inputs.h"
+#include "memory.h"
 
 /**
- * Finds out min and max element below matrix's sub-diagonal.
- * @param matrixDegree - matrix degree (6 is 6x6 matrix, for example)
+ * Finds the minimum and maximum elements
+ * below sub-diagonal in a 2D array (matrix).
+ *
+ * @param rows - The number of rows in the 2D array.
+ * @param cols - The number of columns in the 2D array.
+ * @param array - The 2D array to be processed.
  */
-void solveTask(int matrixDegree) {
-    double matrix[matrixDegree][matrixDegree];
+void solveTask(int rows, int cols, double **array) {
 
-    // 26 and -26 because we're filling array within -25 to 25 range
-    double max = -26;
-    double min = 26;
+    // init min and max to the last element of the first row of the array
+    double min = array[0][cols - 1];
+    double max = array[0][cols - 1];
 
-    fill2dDoubleArray(matrixDegree, matrixDegree, matrix);
-    print2dDoubleArray(matrixDegree, matrixDegree, matrix);
+    print2dDynamicDoubleArray(rows, cols, array);
 
-    puts("\nIn field:");
-    for (int i = 0; i < matrixDegree; ++i) {
-        puts("");
+    puts("\nIn field:\n");
+    for (int i = 0; i < rows; ++i) {
 
-        for (int j = matrixDegree - 1; j > matrixDegree - i - 2; --j) {
-            printf("%.2f ", matrix[i][j]);
+        /**
+         * loop over each column in reverse order, starting from the last column
+         * and stopping at the element of sub-diagonal.
+         */
+        for (int j = cols - 1; j > cols - i - 2; --j) {
+            printf("%6.2f ", array[i][j]);
 
-            if (matrix[i][j] >= max) {
-                max = matrix[i][j];
-            } else if (matrix[i][j] <= min) {
-                min = matrix[i][j];
+            // finding min and max
+            if (array[i][j] >= max) {
+                max = array[i][j];
+            } else if (array[i][j] <= min) {
+                min = array[i][j];
             }
         }
     }
 
-    printf("\n\nMax element: %f, min element: %f\n\n", max, min);
+    printf("\n\nMax element: %f, min element: %f", max, min);
 }
 
 int main(void) {
@@ -55,34 +65,34 @@ int main(void) {
         switch (currentPickedOption) {
 
             case MANUAL_INPUT: {
-                bool isArgValid = false;
-
-                do {
+                while (matrixDegree <= 1) {
                     printf("Input matrix degree:");
+                    matrixDegree = getIntInput();
 
-                    if (scanf("%d", &matrixDegree) == 1 && matrixDegree > 1) {
-                        printf("Valid input: %d\n", matrixDegree);
-                        isArgValid = 1;
+                    if (matrixDegree <= 1) {
+                        puts("Degree should be more than 1!");
                     }
-                    else {
-                        while (getchar() != '\n');
-                        onInvalidInput("enter only int values from 2 to N");
-                    }
-                } while (!isArgValid);
+                }
 
-                solveTask(matrixDegree);
+                double **matrix = allocate2dArray(matrixDegree, matrixDegree);
+                manualFill2dDoubleArray(matrixDegree, matrixDegree, matrix);
+
+                solveTask(matrixDegree, matrixDegree, matrix);
+
+                free2dArray(matrixDegree, matrix);
                 break;
             }
             case RANDOM_INPUT: {
-                matrixDegree = (int) getRandomNumber(1, 10);
-
+                matrixDegree = (int) getRandomNumber(2, 10);
                 printf("\nRandom matrix degree: %d\n", matrixDegree);
 
-                solveTask(matrixDegree);
+                double **matrix = allocate2dArray(matrixDegree, matrixDegree);
+                fill2dDynamicDoubleArray(matrixDegree, matrixDegree, matrix);
+
+                solveTask(matrixDegree, matrixDegree, matrix);
+
+                free2dArray(matrixDegree, matrix);
                 break;
-            }
-            case CLEAR_CONSOLE: {
-                system("cls");
             }
             case EXIT: {
                 puts("Exiting...");

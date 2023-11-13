@@ -12,12 +12,14 @@ add_executable(it_tests_1sem
         task_structures.h
         menu.h
         inputs.h
+        memory.h
 
         #modules
         math_utils.c
         arrays.c
         menu.c
         inputs.c
+        memory.c
 
         #programs
 #        test1_task1.c
@@ -25,8 +27,8 @@ add_executable(it_tests_1sem
 #        test1_task3.c
 #        test2_task1.c
 #        test2_task2.c
-        test2_task3.c
-#        test3_task1.c
+#        test2_task3.c
+        test3_task1.c
 #        test3_task2.c
 #        test3_task3.c
 

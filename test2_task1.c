@@ -15,7 +15,7 @@ double solveRecurrence(int l) {
     double current = 0.;
 
     double sum = prev1 + prev2;
-    for (int i = 2; i <= l; i++) {
+    for (int i = 2; i < l; i++) {
         current = 2.5 * sin(prev1 - prev2) + 3 * cos(prev1 + prev2);
 
         sum += current;
@@ -32,7 +32,7 @@ int main(void) {
     getWelcomeMessage(getStudent(), 2, 1);
 
     double sum = solveRecurrence(l);
-    printf("Sum of the recurrent expression from 1 to %d is %f\n", l, sum);
+    printf("\nSSum of the recurrent expression from 1 to %d is %f\n", l, sum);
 
     return EXIT_SUCCESS;
 }

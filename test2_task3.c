@@ -17,7 +17,7 @@ void solveMath(int rows, int cols, int (*array)[cols]) {
      * needed for storing sum of elements
      * behind an element of main diagonal
      */
-    int sumVector[5] = { 0 };
+    int sumVector[MATRIX_DEGREE] = { 0 };
 
     for (int i = 0; i < rows; ++i) {
         int sumOfRow = 0;
@@ -25,7 +25,7 @@ void solveMath(int rows, int cols, int (*array)[cols]) {
         for (int j = 0; j < cols; ++j) {
 
             // picking only elems of main diagonal != 0
-            if (i == j && array[i][j] != 0 && i != 5) {
+            if (i == j && array[i][j] != 0) {
 
                 // calculating sum of elems behind elem of main diagonal
                 for (int k = j + 1; k < cols; ++k) {
@@ -39,7 +39,7 @@ void solveMath(int rows, int cols, int (*array)[cols]) {
     }
 
     puts("\nSum vector: ");
-    printIntArray(5, sumVector);
+    printIntArray(MATRIX_DEGREE, sumVector);
 
     puts("\n\nModified Matrix: ");
     print2dIntArray(rows, cols, array);

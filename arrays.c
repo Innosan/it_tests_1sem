@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "arrays.h"
 #include "math_utils.h"
+#include "inputs.h"
 
 /*
  * Filling arrays
@@ -18,10 +19,27 @@ void fillDoubleArray(int length, double (*array)) {
     }
 }
 
+void manualFill2dDoubleArray(int rows, int cols, double **array) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            printf("[%d][%d] element:", i + 1, j + 1);
+            array[i][j] = getDoubleInput();
+        }
+    }
+}
+
 void fill2dDoubleArray(int rows, int cols, double (*array)[cols]) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             array[i][j] = (double)getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+        }
+    }
+}
+
+void fill2dDynamicDoubleArray(int rows, int cols, double **array) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            array[i][j] = getRandomNumber(MIN_RANDOM, MAX_RANDOM);
         }
     }
 }
@@ -68,6 +86,18 @@ void print2dIntArray(int rows, int cols, int (*array)[cols]) {
 }
 
 void print2dDoubleArray(int rows, int cols, double (*array)[cols]) {
+    printf("Matrix %d x %d:\n\n", rows, cols);
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%6.2f\t", array[i][j]);
+        }
+
+        puts("");
+    }
+}
+
+void print2dDynamicDoubleArray(int rows, int cols, double **array) {
     printf("Matrix %d x %d:\n\n", rows, cols);
 
     for (int i = 0; i < rows; i++) {
