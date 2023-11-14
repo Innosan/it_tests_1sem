@@ -16,6 +16,12 @@ double** allocate2dArray(int rows, int cols) {
     return array;
 }
 
+int* allocateArray(int length) {
+    int *array = (int*) malloc(length * sizeof(int));
+
+    return array;
+}
+
 void free2dArray(int rows, double **array) {
 
     // For each row, free the memory allocated for the 1D array.
@@ -25,4 +31,12 @@ void free2dArray(int rows, double **array) {
 
     // Free the memory allocated for the pointers to the 1D arrays.
     free(array);
+    array = NULL;
 }
+
+void freeArray(int *array) {
+    // Free the memory allocated for the elements of the 1D array.
+    free(array);
+    array = NULL;
+}
+

@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <time.h>
+
 #include "math_utils.h"
 #include "arrays.h"
+#include "inputs.h"
+#include "memory.h"
 #include "menu.h"
+
+#define MINIMUM_ARRAY_SIZE 2
 
 /**
  * Sums two numbers
@@ -20,14 +24,14 @@ int sum(int a, int b) {
  * Folds array with sum function
  * @param arr - array to fold
  * @param size - size of array
- * @param sumFunc - function to fold array with
+ * @param foldWith - function to fold array with
  * @return sum of elements in array
  */
-int foldArray(int *arr, int size, int (*sumFunc)(int, int)) {
+int foldArray(int *arr, int size, int (*foldWith)(int, int)) {
     int result = 0;
 
     for (int i = 0; i < size; i++) {
-        result = sumFunc(result, arr[i]);
+        result = foldWith(result, arr[i]);
     }
 
     return result;
@@ -39,11 +43,8 @@ int foldArray(int *arr, int size, int (*sumFunc)(int, int)) {
  *
  * @param arrayLength - size of array
  */
-void solveTask(int arrayLength) {
-    int array[arrayLength];
-
-    fillIntArray(arrayLength, array);
-    printIntArray(arrayLength, array);
+void solveTask(int arrayLength, int *array) {
+    printDynamicIntArray(arrayLength, array);
 
     int sumOfArray = foldArray(array, arrayLength, sum);
     printf("\nSum of array: %d\n", sumOfArray);
@@ -60,37 +61,38 @@ int main(void) {
         printMenuOptions();
         currentPickedOption = getMenuOption();
 
-        int arrayLength = 0;
+        int arrayLength = MINIMUM_ARRAY_SIZE;
         switch (currentPickedOption) {
 
             case MANUAL_INPUT: {
-                bool isArgValid = false;
+                while (arrayLength <= MINIMUM_ARRAY_SIZE) {
+                    printf("Input array length:");
+                    arrayLength = getIntInput();
 
-                printf("Input array length:");
-                do {
-                    if (scanf("%d", &arrayLength) == 1 && arrayLength > 1) {
-                        printf("Valid input: %d\n", arrayLength);
-                        isArgValid = 1;
+                    if (arrayLength <= MINIMUM_ARRAY_SIZE) {
+                        printf("Degree should be more than %d!", MINIMUM_ARRAY_SIZE);
                     }
-                    else {
-                        while (getchar() != '\n');
-                        onInvalidInput("enter only int values from 2 to any");
-                    }
-                } while (!isArgValid);
+                }
 
-                solveTask(arrayLength);
+                int *array = allocateArray(arrayLength);
+                manualFillIntArray(arrayLength, array);
+
+                solveTask(arrayLength, array);
+
+                freeArray(array);
                 break;
             }
             case RANDOM_INPUT: {
                 arrayLength = (int) getRandomNumber(2, 10);
-
                 printf("\nRandom array length: %d\n", arrayLength);
 
-                solveTask(arrayLength);
+                int *array = allocateArray(arrayLength);
+                fillDynamicIntArray(arrayLength, array);
+
+                solveTask(arrayLength, array);
+
+                freeArray(array);
                 break;
-            }
-            case CLEAR_CONSOLE: {
-                system("cls");
             }
             case EXIT: {
                 puts("Exiting...");

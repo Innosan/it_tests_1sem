@@ -28,9 +28,9 @@ add_executable(it_tests_1sem
 #        test2_task1.c
 #        test2_task2.c
 #        test2_task3.c
-        test3_task1.c
+#        test3_task1.c
 #        test3_task2.c
-#        test3_task3.c
+        test3_task3.c
 
 #        lectureTask.c
 )

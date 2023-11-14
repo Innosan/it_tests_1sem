@@ -26,9 +26,9 @@ void solveTask(int rows, int cols, double **array) {
 
     print2dDynamicDoubleArray(rows, cols, array);
 
-    puts("\nIn field:\n");
+    puts("\nIn field:");
     for (int i = 0; i < rows; ++i) {
-
+        puts("");
         /**
          * loop over each column in reverse order, starting from the last column
          * and stopping at the element of sub-diagonal.

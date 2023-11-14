@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "locale.h"
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
 
 void compareAndReplaceBits(unsigned char *sequence) {
     unsigned char msb = (*sequence & 0x80) >> 7; // Extract the most significant bit
@@ -28,14 +30,15 @@ void printBitRepresentation(int length, char c[]) {
 }
 
 int main() {
-    setlocale(LC_CTYPE, "*");
-    char sequence[8] = "qweqwert"; // Example sequence
+    system("chcp 1251");
+    setlocale(LC_ALL, "utf-8");
+    char sequence[16] = "qweqwert"; // Example sequence
 
-    printf("Original sequence: %0x\n", sequence);
+    printf("Original абоба sequence: %s\n", sequence);
 
-    printf("Bit representation: ");
+    printf(": ");
     printBitRepresentation(8, sequence);
-    printf("\n Size oof char: %llu\n", sizeof(sequence));
+    printf("\n Size of char: %llu\n", sizeof(sequence));
 
     compareAndReplaceBits((unsigned char *) &sequence);
 

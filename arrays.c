@@ -28,10 +28,32 @@ void manualFill2dDoubleArray(int rows, int cols, double **array) {
     }
 }
 
+void manualFillIntArray(int length, int *array) {
+    for (int i = 0; i < length; ++i) {
+        printf("%d element:", i);
+        array[i] = getIntInput();
+    }
+}
+
+void fillDynamicIntArray(int length, int *array) {
+    for (int i = 0; i < length; ++i) {
+        array[i] = (int) getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+    }
+}
+
 void fill2dDoubleArray(int rows, int cols, double (*array)[cols]) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             array[i][j] = (double)getRandomNumber(MIN_RANDOM, MAX_RANDOM);
+        }
+    }
+}
+
+
+void fill2dIntArray(int rows, int cols, int (*array)[cols]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            array[i][j] = (int)getRandomNumber(MIN_RANDOM, MAX_RANDOM);
         }
     }
 }
@@ -43,15 +65,6 @@ void fill2dDynamicDoubleArray(int rows, int cols, double **array) {
         }
     }
 }
-
-void fill2dIntArray(int rows, int cols, int (*array)[cols]) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            array[i][j] = (int)getRandomNumber(MIN_RANDOM, MAX_RANDOM);
-        }
-    }
-}
-
 
 /*
  * Printing arrays
@@ -94,6 +107,14 @@ void print2dDoubleArray(int rows, int cols, double (*array)[cols]) {
         }
 
         puts("");
+    }
+}
+
+void printDynamicIntArray(int length, int *array) {
+    printf("Array of %d length:\n", length);
+
+    for (int i = 0; i < length; i++) {
+        printf("%d\t", array[i]);
     }
 }
 
